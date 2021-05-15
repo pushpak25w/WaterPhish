@@ -343,7 +343,7 @@ features = []
 for i in range(25):
     features.append('-')
 
-url =  "https://cse.iiitd.ac.in/"
+url =  input()
 
 features[2] = f3_Shortening_Service(url)
 
