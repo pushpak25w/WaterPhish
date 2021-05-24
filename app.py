@@ -9,10 +9,13 @@ def index():
 		url = request.form.get('url')
 		val=int(phishing(url))
 		if val==1:
-			return 'not phishing'
+			print('not phishing')
 		elif val==0:
-			return 'suspicious'
+			print('suspicious')
 		else:
-			return 'phishing'
+			print('phishing')
 
 	return render_template('searchpage.html')
+
+if __name__ == "__main__":
+	app.run(debug=True)

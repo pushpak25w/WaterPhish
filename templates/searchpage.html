@@ -16,8 +16,8 @@
 
 	<div class = "form">
 		<h2> Enter URL to check legitimacy of the website </h2>
-		<form action="index" method="get">
-			<input type="text" name="search" placeholder="Enter URL...">
+		<form action="{{url_for('index')}}" method="POST">
+			<input type="text" name="url" placeholder="Enter URL...">
 			<input type="submit" value="Search">
 		</form>
 	</div>
