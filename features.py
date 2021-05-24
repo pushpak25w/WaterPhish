@@ -35,6 +35,15 @@ from bs4 import BeautifulSoup as bs
 # 23 'web_traffic'
 # 24 'Page_Rank',
 # 25 'Statistical_report'
+def f17_Redirect(url):
+    response=requests.get(url)
+    if response == "":
+        return -1
+    if len(response.history) <= 1:
+        return -1
+    if len(response.history) <= 4:
+        return 0
+    return 1
 
 def f1_having_IP_Address(domain):
     #1. checking hex digits
@@ -308,7 +317,7 @@ def f21_age_of_domain(domain):
         except:
             return -1
 
-def f22_DNSRecord():
+def f22_DNSRecord(url):
     extract_res = tldextract.extract(url)
     url_ref = extract_res.domain + "." + extract_res.suffix
     try:
@@ -339,69 +348,97 @@ def f23_web_traffic(url):
 #driver function
 
 features = []
-
-for i in range(25):
-    features.append('-')
-
-url =  input()
-
-features[2] = f3_Shortening_Service(url)
-
-if(features[2]==-1):
-    ind = url.find("https://")       #remove https if present in tinyurl
-    if(ind!=-1):
-        url = url[(ind+8):]
-    url = requests.head("http://"+url).headers['location']
-
-domain = urlparse(url).netloc
-
-try:
-    result = requests.get(url)
-    src = result.content
-    soup = bs(src, 'lxml')
-    flag = 0
-except:
-    print("Website doesn't exist!")
+features_model=[]
+soup=''
+abc=[]
+def extract(url):
+    global features
+    global abc
     for i in range(25):
-        features[i]=-1
-    flag = 1
+        features.append('-')
+
+    features[2] = f3_Shortening_Service(url)
+
+    if(features[2]==-1):
+        ind = url.find("https://")       #remove https if present in tinyurl
+        if(ind!=-1):
+            url = url[(ind+8):]
+        url = requests.head("http://"+url).headers['location']
+
+    domain = urlparse(url).netloc
+
+    try:
+        result = requests.get(url)
+        src = result.content
+        global soup
+        soup = bs(src, 'lxml')
+        flag = 0
+    except:
+        print("Website doesn't exist!")
+        for i in range(22):
+            features[i]=-1
+        flag = 1
 
 
-if flag==0:
+    if flag==0:
+        features[16]=f17_Redirect(url)
+        #domain based features
+        features[0] = f1_having_IP_Address(domain)
+        features[5] = f6_Prefix_Suffix(domain)
+        features[6] = f7_having_sub_domain(domain)
+        features[8] = f9_Domain_registration_length(domain)
+        features[10] = f11_HTTPS_token(domain)
+        features[11] = f12_Request_URL(domain)
+        features[12] = f13_URl_of_Anchor(domain)
+        features[13] = f14_Links_in_tags(domain)
+        features[20] = f21_age_of_domain(domain)
 
-    #domain based features
-    features[0] = f1_having_IP_Address(domain)
-    features[5] = f6_Prefix_Suffix(domain)
-    features[6] = f7_having_sub_domain(domain)
-    features[8] = f9_Domain_registration_length(domain)
-    features[10] = f11_HTTPS_token(domain)
-    features[11] = f12_Request_URL(domain)
-    features[12] = f13_URl_of_Anchor(domain)
-    features[13] = f14_Links_in_tags(domain)
-    features[20] = f21_age_of_domain(domain)
+        #url based features
+        features[1] = f2_URL_Length(url)
+        features[3] = f4_having_At_Symbol(url)
+        features[4] = f5_double_slash_redirecting(url)
+        features[22] = f23_web_traffic(url)
 
-    #url based features
-    features[1] = f2_URL_Length(url)
-    features[3] = f4_having_At_Symbol(url)
-    features[4] = f5_double_slash_redirecting(url)
-    features[22] = f23_web_traffic(url)
+        #other
+        features[15] = f16_Submitting_to_email()
+        features[17] = f18_on_mouseover()
+        features[18] = f19_RightClick()
+        features[19] = f20_Iframe(result)
+        features[21] = f22_DNSRecord(url)
+        features[7] = 1
+        features[9] = f10_Favicon(domain)
 
-    #other
-    features[15] = f16_Submitting_to_email()
-    features[17] = f18_on_mouseover()
-    features[18] = f19_RightClick()
-    features[19] = f20_Iframe(result)
-    features[21] = f22_DNSRecord()
-    features[7] = 1
-    features[9] = f10_Favicon(domain)
+    count = 0
+    global features_model
+    for i in range(25):
+        if features[i]==0 or features[i]==-1 or features[i]==1:
+            print("f", i+1, " = ", features[i])
+            features_model.append(features[i])
+            count+=1
+def encoding(data):
+    mapper={1:1,0:0,-1:2}
+    for i in range(len(data)):
+        data[i]=mapper[data[i]]
+    return data
 
-count = 0
-for i in range(25):
-    if features[i]==0 or features[i]==-1 or features[i]==1:
-        print("f", i+1, " = ", features[i])
-        count+=1
+import numpy as np
+import pickle
 
+def phishing(url):
+    global features_model
+    global features
+    features.clear()
+    features_model.clear()
+    extract(url)
+    features_model=encoding(features_model)
+    model=pickle.load(open('./RF','rb'))
+    array=np.array(features_model)
+    print(len(array))
+    array=array.reshape(1,-1)
+    ans=model.predict(array)
+    return ans
 #url list
 #tinyurl.com/4jtbxwtr
 #https://tinyurl.com/4jtbxwtr
-#https://bit.ly/3hArRGi - phish
+#https://amazon-co-jp.youtian8332.vip/ - phish
+#https://olx.pl.item-pay.site -phish
