@@ -9,11 +9,11 @@ def index():
 		url = request.form.get('url')
 		val=int(phishing(url))
 		if val==1:
-			print('not phishing')
+			return('not phishing')
 		elif val==0:
-			print('suspicious')
+			return('suspicious')
 		else:
-			print('phishing')
+			return('phishing')
 
 	return render_template('searchpage.html')
 
