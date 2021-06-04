@@ -35,15 +35,6 @@ from bs4 import BeautifulSoup as bs
 # 23 'web_traffic'
 # 24 'Page_Rank',
 # 25 'Statistical_report'
-def f17_Redirect(url):
-    response=requests.get(url)
-    if response == "":
-        return -1
-    if len(response.history) <= 1:
-        return -1
-    if len(response.history) <= 4:
-        return 0
-    return 1
 
 def f1_having_IP_Address(domain):
     #1. checking hex digits
@@ -282,6 +273,16 @@ def f16_Submitting_to_email():
         return 1
     return -1
 
+def f17_Redirect(url):
+    response=requests.get(url)
+    if response == "":
+        return -1
+    if len(response.history) <= 1:
+        return -1
+    if len(response.history) <= 4:
+        return 0
+    return 1
+
 def f18_on_mouseover():
     if str(soup).lower().find('onmouseover="window.status')!=-1:
         return -1
@@ -375,8 +376,9 @@ def extract(url):
         flag = 0
     except:
         print("Website doesn't exist!")
-        for i in range(22):
-            features[i]=-1
+        for i in range(25):
+            if(i!=14 and i!=23 and i!=24):
+                features[i]=-1
         flag = 1
 
 
@@ -410,11 +412,30 @@ def extract(url):
 
     count = 0
     global features_model
+    global warnings
+    warnings = []
+
     for i in range(25):
         if features[i]==0 or features[i]==-1 or features[i]==1:
+            if features[i]==-1:
+                if (i==4):
+                    warnings.append("You'll be redirected to another website!")
+                elif(i==15):
+                    warnings.append("Your personal details will be misused!")
+                elif(i==18):
+                    warnings.append("This website hides their source code!")
+                elif(i==19):
+                    warnings.append("Additional webpage is being hidden into the one that is currently shown!")
+                elif(i==21):
+                    warnings.append("Website is not recognized by a trusted authority!")
+                elif(i==22):
+                    warnings.append("This website has a very low web traffic!")
+
             print("f", i+1, " = ", features[i])
             features_model.append(features[i])
             count+=1
+    return(warnings)
+
 def encoding(data):
     mapper={1:1,0:0,-1:2}
     for i in range(len(data)):
@@ -429,14 +450,18 @@ def phishing(url):
     global features
     features.clear()
     features_model.clear()
-    extract(url)
+
+    warnings = extract(url)
+
     features_model=encoding(features_model)
     model=pickle.load(open('./RF','rb'))
     array=np.array(features_model)
     print(len(array))
     array=array.reshape(1,-1)
     ans=model.predict(array)
-    return ans
+    return (ans, warnings)
+
+
 #url list
 #tinyurl.com/4jtbxwtr
 #https://tinyurl.com/4jtbxwtr
