@@ -58,7 +58,7 @@ h2{
 
 .phish{
 
-  background-color: red;
+  background-color: #e60000;
   border: none;
   color: white;
   font-weight: bold;
@@ -91,4 +91,25 @@ h2{
 
   transform: translate(-50%, -50%);
   border-radius: 10px 10px
+}
+
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.safe{
+  text-align: center;
+  padding: 20px;
+  background-color: #349c14;
+  color: white;
+}
+
+.warn{
+  position: absolute;
+  top: 500%;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
