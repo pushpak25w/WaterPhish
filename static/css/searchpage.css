@@ -4,12 +4,7 @@ input[type=text] {
   border: 2px solid white;
   border-radius: 4px;
   font-size: 16px;
-  /*background-color: white;
-  background-image: url('searchicon.png');
-  background-position: 10px 10px; 
-  background-repeat: no-repeat;*/
   padding: 12px 70px 12px 40px;
-
   background-image: url('https://cdn.icon-icons.com/icons2/2551/PNG/512/search_icon_152764.png');
   background-repeat: no-repeat;
   background-size: 22px 22px;
@@ -17,7 +12,6 @@ input[type=text] {
 }
 
 body{
-  /*background-color:#000027;*/
   background: url(../images/back.jpg);
   background-size: cover;
   align-items: center;
@@ -28,13 +22,11 @@ input[type=button], input[type=submit], input[type=reset]{
   border: none;
   color: white;
   font-weight: bold;
-  padding: 16px 32px;
+  padding: 16px 35px 16px 35px;
   text-decoration: none;
-  margin: 0;
   position: absolute;
   top: 180%;
   left: 50%;
-  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   cursor: pointer;
   border-radius: 10px 10px
@@ -46,7 +38,7 @@ input[type=submit]:hover {
 }
 
 .form{
-  top:45%;
+  top:41%;
   left: 50%;
   transform: translate3d(-50%,-50%, 0);
   position: fixed;
@@ -64,30 +56,39 @@ h2{
   padding: 5px 10px 5px 10px;
 }
 
-.out{
-  padding: 0px 20px 0px 20px;
-  top:320%;
-  left: 50%;
-  transform: translate3d(-50%,-50%, 0);
-  position: fixed;
-}
-
 .phish{
-  color: #210108;
-  background-color: #E74C3C ;
-  padding: 0px 20px 0px 20px;
-  top:320%;
+
+  background-color: red;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding-right: 35px;
+  padding-left: 35px;
+
+  text-decoration: none;
+  margin: 0;
+  position: absolute;
+  top: 180%;
   left: 50%;
-  transform: translate3d(-50%,-50%, 0);
-  position: fixed;
+ 
+  transform: translate(-50%, -50%);
+  border-radius: 10px 10px
 }
 
 .legit{
-  color: #210108;
-  background-color: green ;
-  padding: 0px 20px 0px 20px;
-  top:320%;
+
+  background-color: green;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding-right: 35px;
+  padding-left: 35px;
+  text-decoration: none;
+  margin: 0;
+  position: absolute;
+  top: 180%;
   left: 50%;
-  transform: translate3d(-50%,-50%, 0);
-  position: fixed;
+
+  transform: translate(-50%, -50%);
+  border-radius: 10px 10px
 }
