@@ -3,19 +3,28 @@ from features import phishing
 
 app=Flask(__name__)
 
-@app.route('/',methods=["GET","POST"])
-def index():
+
+def phish():
 	if request.method == "POST":
 		url = request.form.get('url')
-		val=int(phishing(url))
-		if val==1:
-			return('not phishing')
-		elif val==0:
-			return('suspicious')
-		else:
-			return('phishing')
 
-	return render_template('searchpage.html')
+		val = phishing(url)
+		val = int(val)
+
+		if val==1:
+			output = "Legitimate"
+		elif val==0:
+			output = "Suspicious"
+		else:
+			output = "Phishing!"
+
+		return(output)
+
+@app.route('/', methods=["GET","POST"])
+
+def index():
+	output = phish()
+	return render_template('searchpage.html', output=output)
 
 if __name__ == "__main__":
 	app.run(debug=True)
