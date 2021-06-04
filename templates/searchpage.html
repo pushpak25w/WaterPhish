@@ -6,6 +6,12 @@
   <title>Search-URL</title>
   <link rel="shortcut icon" href="/assets/favicon.ico">
   <link rel="stylesheet" href="{{url_for('static',filename='css/searchpage.css')}}">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript">
+  	$(document).ready( function() {
+        $('#delete').delay(7000).fadeOut();
+    });
+  </script>
 </head>
 <body>
 
@@ -15,11 +21,26 @@
 
 
 	<div class = "form">
-		<h2> Enter URL to check legitimacy of the website </h2>
+		<!-- <h2> Enter URL to check legitimacy of the website </h2> -->
 		<form action="{{url_for('index')}}" method="POST">
-			<input type="text" name="url" placeholder="Enter URL...">
+			<input type="text" name="url" placeholder="Enter URL to check legitimacy...  ">
 			<input type="submit" value="Search">
-		</form>
+	</form>
+
+
+
+
+	<div id = "delete", class = "out">
+		{% if output %}
+			{% if output=="Legitimate" %}
+				<div class = "legit"><p>{{output}}</p></div>
+			{% else %}
+				<div class = "phish"><p>{{output}}</p></div>
+			{% endif %}
+
+		{% endif %}
 	</div>
+
+
 </body>
 </html>
