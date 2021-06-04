@@ -6,12 +6,20 @@
   <title>Search-URL</title>
   <link rel="shortcut icon" href="/assets/favicon.ico">
   <link rel="stylesheet" href="{{url_for('static',filename='css/searchpage.css')}}">
+  
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  
   <script type="text/javascript">
   	$(document).ready( function() {
-        $('#delete').delay(7000).fadeOut();
+        $('#delete').delay(8000).fadeOut();
     });
+
+  	$(document).ready( function() {
+        $('#del').delay(8000).fadeOut();
+    });
+
   </script>
+
 </head>
 <body>
 
@@ -25,9 +33,7 @@
 		<form action="{{url_for('index')}}" method="POST">
 			<input type="text" name="url" placeholder="Enter URL to check legitimacy...  ">
 			<input type="submit" value="Search">
-	</form>
-
-
+		</form>
 
 
 	<div id = "delete", class = "out">
@@ -36,9 +42,34 @@
 				<div class = "legit"><p>{{output}}</p></div>
 			{% else %}
 				<div class = "phish"><p>{{output}}</p></div>
+
 			{% endif %}
 
 		{% endif %}
+	</div>
+
+
+ 	<div id = "del", class = "warn">
+
+ 		{% if output=="Legitimate"%}
+ 			<div class="safe">
+			  	<strong>SAFE!</strong>
+				This website is safe to browse.
+			</div>
+
+		{% else %}
+	      	{% if warnings %}
+	      		<div class="alert">
+				  	<strong>DANGER!</strong>
+					{% for w in warnings %}
+		          		<li> {{ w }}  </li>
+		        	{% endfor %}
+				</div>
+
+	    	{% endif %}
+
+	  	{% endif %}
+
 	</div>
 
 
