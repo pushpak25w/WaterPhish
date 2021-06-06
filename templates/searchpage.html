@@ -11,11 +11,11 @@
   
   <script type="text/javascript">
   	$(document).ready( function() {
-        $('#delete').delay(8000).fadeOut();
+        $('#delete').delay(4000).fadeOut();
     });
 
   	$(document).ready( function() {
-        $('#del').delay(8000).fadeOut();
+        $('#del').delay(4000).fadeOut();
     });
 
   </script>
@@ -23,15 +23,12 @@
 </head>
 <body>
 
-	<div class = "logo">
-        <img src="{{url_for('static',filename='images/logo.png')}}" alt="Logo" style="width: 70%">
-    </div>
 
 
 	<div class = "form">
 		<!-- <h2> Enter URL to check legitimacy of the website </h2> -->
 		<form action="{{url_for('index')}}" method="POST">
-			<input type="text" name="url" placeholder="Enter URL to check legitimacy...  ">
+			<input type="text" name="url" placeholder="e.g https://google.com  ">
 			<input type="submit" value="Search">
 		</form>
 
@@ -40,6 +37,8 @@
 		{% if output %}
 			{% if output=="Legitimate" %}
 				<div class = "legit"><p>{{output}}</p></div>
+			{% elif output=="evu"%}
+				<div class = "evu"><p>Enter valid Url</p></div>
 			{% else %}
 				<div class = "phish"><p>{{output}}</p></div>
 

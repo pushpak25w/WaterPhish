@@ -92,7 +92,23 @@ h2{
   transform: translate(-50%, -50%);
   border-radius: 10px 10px
 }
+.evu{
+  background-color: grey;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding-right: 35px;
+  padding-left: 35px;
+  text-decoration: none;
+  margin: 0;
+  position: absolute;
+  top: 180%;
+  left: 50%;
+  text-align: center;
 
+  transform: translate(-50%, -50%);
+  border-radius: 10px 10px
+}
 .alert {
   padding: 20px;
   background-color: #f44336;
@@ -108,7 +124,7 @@ h2{
 
 .warn{
   position: absolute;
-  top: 500%;
+  top: 550%;
   width: 100%;
   left: 50%;
   transform: translate(-50%, -50%);

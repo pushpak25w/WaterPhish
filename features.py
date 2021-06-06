@@ -5,7 +5,6 @@ import ipaddress
 import tldextract
 import whois
 import datetime
-import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup as bs
 
 #Features:
@@ -135,18 +134,12 @@ def f9_Domain_registration_length(domain):
             return -1
 
 def f10_Favicon(domain):
-    # icon = soup.find_all("link", rel="shortcut icon")
-    # href = icon.get('href')
-    # dom = urlparse(href).netloc
-    # if(dom!="favicon.ico"):
-    #     return -1
-    # return 1
     href = []
     for icon in soup.find_all("link", rel="shortcut icon"):
         href.append(icon.get('href'))
 
     for h in href:
-        if(href=="favicon.ico"):
+        if(h=="favicon.ico"):
             return 1
         else:
             dom = urlparse(h).netloc
@@ -170,10 +163,9 @@ def checkperc(oth, cnt):
 def f12_Request_URL(domain):
     percimg = f121_findsrcdomain('img', domain)
     percvid = f121_findsrcdomain('video', domain)
-    percdoc = f121_findsrcdomain('', domain)
     percsound = f121_findsrcdomain('embed', domain)
 
-    perc = percimg + percvid + percdoc + percsound
+    perc = percimg + percvid + percsound
 
     if perc>=21:
         if perc>=61:
@@ -196,8 +188,7 @@ def f121_findsrcdomain(tag, domain):
         dom = urlparse(src).netloc
         if (dom!=domain and dom!='' and dom!=b''):
             invalidhref+=1 
-        count+=1
-
+    count=len(srcs)
     perc = checkperc(invalidhref, count)
     return (perc)
 
@@ -218,8 +209,7 @@ def f13_URl_of_Anchor(domain):
             dom = urlparse(h).netloc
             if (dom!=domain and dom!='' and dom!=b''):
                 invalidhref+=1 
-        count+=1
-
+    count=len(href)
     perc = checkperc(invalidhref, count)
 
     if perc>=31:
@@ -230,11 +220,9 @@ def f13_URl_of_Anchor(domain):
     return 1
 
 def f14_Links_in_tags(domain):
-
     othlink, cntlink = f141_find_domain('link', domain)
     othscript, cntscript = f141_find_domain('script', domain)
     othmeta, cntmeta = f141_find_domain('meta', domain)
-
     perclink = checkperc(othlink, cntlink)
     percscript = checkperc(othscript, cntscript)
     percmeta = checkperc(othmeta, cntmeta)
@@ -275,13 +263,11 @@ def f16_Submitting_to_email():
 
 def f17_Redirect(url):
     response=requests.get(url)
-    if response == "":
+    if len(response.history) <=1:
+        return 1
+    if len(response.history) >=4:
         return -1
-    if len(response.history) <= 1:
-        return -1
-    if len(response.history) <= 4:
-        return 0
-    return 1
+    return 0
 
 def f18_on_mouseover():
     if str(soup).lower().find('onmouseover="window.status')!=-1:
@@ -376,11 +362,7 @@ def extract(url):
         flag = 0
     except:
         print("Website doesn't exist!")
-        for i in range(25):
-            if(i!=14 and i!=23 and i!=24):
-                features[i]=-1
-        flag = 1
-
+        return "Website doesn't exist!"
 
     if flag==0:
         features[16]=f17_Redirect(url)
@@ -406,8 +388,7 @@ def extract(url):
         features[17] = f18_on_mouseover()
         features[18] = f19_RightClick()
         features[19] = f20_Iframe(result)
-        features[21] = f22_DNSRecord(url)
-        features[7] = 1
+        features[7]=features[21] = f22_DNSRecord(url)
         features[9] = f10_Favicon(domain)
 
     count = 0
@@ -452,7 +433,8 @@ def phishing(url):
     features_model.clear()
 
     warnings = extract(url)
-
+    if warnings=="Website doesn't exist!":
+        return (404,"")
     features_model=encoding(features_model)
     model=pickle.load(open('./RF','rb'))
     array=np.array(features_model)
