@@ -44,12 +44,6 @@ input[type=submit]:hover {
   position: fixed;
 }
 
-.logo{
-    position: absolute;
-    top:3%;
-    right: 71%;
-}
-
 h2{
   color: #210108;
   background-color: #009e7a;

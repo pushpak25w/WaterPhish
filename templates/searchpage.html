@@ -22,9 +22,6 @@
 
 </head>
 <body>
-
-
-
 	<div class = "form">
 		<!-- <h2> Enter URL to check legitimacy of the website </h2> -->
 		<form action="{{url_for('index')}}" method="POST">
@@ -38,7 +35,7 @@
 			{% if output=="Legitimate" %}
 				<div class = "legit"><p>{{output}}</p></div>
 			{% elif output=="evu"%}
-				<div class = "evu"><p>Enter valid Url</p></div>
+				<div class = "evu"><p>Enter valid URL</p></div>
 			{% else %}
 				<div class = "phish"><p>{{output}}</p></div>
 
