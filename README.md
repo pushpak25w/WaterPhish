@@ -1,5 +1,5 @@
 # WaterPhish
-Shark Phish is a website that can detect phishing URLs using Ml model and webscraping for features extraction.
+WaterPhish is a website that can detect phishing URLs using Ml model and webscraping for features extraction.
 ## Feature Extraction
 BeautifulSoup Python Library and urllib.parse are used to extract features of the website.
 ## ML Model
