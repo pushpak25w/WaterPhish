@@ -35,6 +35,19 @@ from bs4 import BeautifulSoup as bs
 # 24 'Page_Rank',
 # 25 'Statistical_report'
 
+'''Pushpak
+f1_having_IP_Address
+f2_URL_Length
+f3_Shortening_Service
+f5_double_slash_redirecting
+f6_Prefix_Suffix
+f11_HTTPS_token(
+f16_Submitting_to_email
+f17_Redirect
+f22_DNSRecord
+'''
+
+
 def f1_having_IP_Address(domain):
     #1. checking hex digits
     domainhex = domain
@@ -64,7 +77,6 @@ def f2_URL_Length(url):
 
 def f3_Shortening_Service(url):
     services = ['bit.ly', 'tinyurl.com', 'goo.gl', 'tr.im', 'is.gd', 'cli.gs', 'yfrog.com', 'migre.me', 'rebrand.ly', 't.co', 'youtu.be', 'ow.ly', 'w.wiki', 'ff.me', 'tiny.cc', 'ur14.eu', 'twurl.nl', 'snipurl.com', 'short.to' ]
-    
     ind = url.find("https://")
     newurl = url
     if(ind!=-1):
