@@ -23,7 +23,7 @@ This website is a uses machine learning to tell if website is phishing or not.
 10. pandas             1.3.2
 
 ## Features:
-1. Extracts domain based features:
+1. Extracts domain based features:<br />
      a. having_IP_Address<br />
      b. Redirect, Prefix_Suffix<br />
      c. having_sub_domain<br />
@@ -34,13 +34,13 @@ This website is a uses machine learning to tell if website is phishing or not.
      h. Links_in_tags<br />
      i. age_of_domain<br />
      j. DNSRecord<br /><br />
-2. Extracts url based features:
+2. Extracts url based features:<br />
      a. URL_Length<br />
      b. having_At_Symbol<br />
      c. double_slash_redirecting<br />
      d. web_traffic<br />
      e. Shortening_Service<br /><br />
-3. Extracts JS features:  
+3. Extracts JS features:  <br />
      a. Submitting_to_email<br />
      b. on_mouseover<br />
      c. RightClick<br />
