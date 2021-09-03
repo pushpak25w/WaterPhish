@@ -1,4 +1,4 @@
-# crime-dashboard-for-India
+# WaterPhish
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
@@ -55,7 +55,7 @@ This website is a uses machine learning to tell if website is phishing or not.
 To run this project, install libraries given above:
 
 ```
-$ cd Waterphish/
+$ cd WaterPhish/
 $ flask run
 ```
 
