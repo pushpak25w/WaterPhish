@@ -33,13 +33,13 @@ This website is a uses machine learning to tell if website is phishing or not.
      g. URl_of_Anchor<br />
      h. Links_in_tags<br />
      i. age_of_domain<br />
-     j. DNSRecord<br />
+     j. DNSRecord<br /><br />
 2. Extracts url based features:
      a. URL_Length<br />
      b. having_At_Symbol<br />
      c. double_slash_redirecting<br />
      d. web_traffic<br />
-     e. Shortening_Service<br />
+     e. Shortening_Service<br /><br />
 3. Extracts JS features:  
      a. Submitting_to_email<br />
      b. on_mouseover<br />
