@@ -58,7 +58,8 @@ To run this project, install libraries given above:
 $ cd WaterPhish/
 $ flask run
 ```
-![image](https://user-images.githubusercontent.com/50488701/131995995-4482b5fd-6313-4f1f-bdca-afbd34e0c8bf.png)
-![image](https://user-images.githubusercontent.com/50488701/131996049-3a68b4d4-a359-4e6e-8030-cc08f41fe49b.png)
+![image](https://user-images.githubusercontent.com/50488701/131996259-b7b808ed-0c36-4690-8a5d-a2915ecf444b.png)
+![image](https://user-images.githubusercontent.com/50488701/131996322-a08c7bb3-ad23-4ad9-aa13-d2951b182343.png)
+
 
 
