@@ -24,28 +24,28 @@ This website is a uses machine learning to tell if website is phishing or not.
 
 ## Features:
 1. Extracts domain based features:
-     a. having_IP_Address
-     b. Redirect, Prefix_Suffix
-     c. having_sub_domain
-     d. Domain_registration_length
-     e. HTTPS_token
-     f. Request_URL
-     g. URl_of_Anchor
-     h. Links_in_tags
-     i. age_of_domain
-     j. DNSRecord
+     a. having_IP_Address<br />
+     b. Redirect, Prefix_Suffix<br />
+     c. having_sub_domain<br />
+     d. Domain_registration_length<br />
+     e. HTTPS_token<br />
+     f. Request_URL<br />
+     g. URl_of_Anchor<br />
+     h. Links_in_tags<br />
+     i. age_of_domain<br />
+     j. DNSRecord<br />
 2. Extracts url based features:
-     a. URL_Length
-     b. having_At_Symbol
-     c. double_slash_redirecting
-     d. web_traffic
-     e. Shortening_Service
+     a. URL_Length<br />
+     b. having_At_Symbol<br />
+     c. double_slash_redirecting<br />
+     d. web_traffic<br />
+     e. Shortening_Service<br />
 3. Extracts JS features:  
-     a. Submitting_to_email
-     b. on_mouseover
-     c. RightClick
-     d. Iframe
-     e. Favicon
+     a. Submitting_to_email<br />
+     b. on_mouseover<br />
+     c. RightClick<br />
+     d. Iframe<br />
+     e. Favicon<br />
 
 ## Features to be added:
 1. Database to stored searched queries.
