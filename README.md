@@ -8,7 +8,7 @@
 
 
 ## General info
-This website is a uses machine learning to tell if website is phishing or not.
+This website uses machine learning to detect if a given website is phishing or legitimate.
 
 ## Technologies:
 1. Python             3.9.6
@@ -48,8 +48,8 @@ This website is a uses machine learning to tell if website is phishing or not.
      e. Favicon<br />
 
 ## Features to be added:
-1. Database to stored searched queries.
-2. Removing saved queries after specific time.
+1. Database to store searched queries.
+2. Removing saved queries after specific time, to keep a check on the legitimacy of the website.
 
 ## Setup
 To run this project, install libraries given above:
