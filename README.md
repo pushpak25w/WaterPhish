@@ -20,7 +20,8 @@ This website uses machine learning to detect if a given website is phishing or l
 7. whois              0.9.13
 8. scikit_learn       0.24.2
 9. numpy              1.21.2
-10. pandas             1.3.2
+10. pandas            1.3.2
+11. lxml              4.5.0  
 
 ## Features:
 1. Extracts domain based features:<br />
